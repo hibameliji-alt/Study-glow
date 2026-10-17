@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study Glow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+  <!-- FRONT PAGE -->
+  <section id="welcome" class="view active">
+    <div class="hero">
+      <div class="mascot big" aria-hidden="true">⭐</div>
+      <h1>Study Glow</h1>
+      <p class="tagline">Tiny steps. Big glow.</p>
+      <p class="sub">A cozy planner that keeps school tasks small, calm and doable.</p>
+      <button class="btn" data-go="home">Start glowing</button>
+      <p class="fine">No sign-up. Your tasks stay on this device.</p>
+    </div>
+  </section>
+
+  <!-- HOME -->
+  <section id="home" class="view">
+    <header class="top">
+      <div>
+        <h2 id="greeting">Hi there!</h2>
+        <p class="muted" id="dateLine"></p>
+      </div>
+      <div class="mascot small" id="mascotSmall">⭐</div>
+    </header>
+    <div class="bubble" id="bubble">You’ve got this!</div>
+
+    <div class="card">
+      <h3>How are you feeling?</h3>
+      <div class="moods" id="moods">
+        <button data-mood="great" aria-label="Great">😄</button>
+        <button data-mood="okay" aria-label="Okay">🙂</button>
+        <button data-mood="tired" aria-label="Tired">😴</button>
+        <button data-mood="stressed" aria-label="Stressed">😣</button>
+        <button data-mood="sad" aria-label="Sad">😢</button>
+      </div>
+      <p class="muted" id="moodMsg"></p>
+    </div>
+
+    <div class="row"><h3>Today’s glow list</h3><button class="link" data-go="add">+ Add task</button></div>
+    <ul class="tasks" id="todayList"></ul>
+    <p class="muted center" id="moreLine"></p>
+  </section>
+
+  <!-- ADD TASK -->
+  <section id="add" class="view">
+    <h2>Add a task</h2>
+    <form id="taskForm" class="card">
+      <label>What do you need to do?
+        <input id="tTitle" required maxlength="60" placeholder="Write history essay">
+      </label>
+      <label>Subject
+        <select id="tSubject"></select>
+      </label>
+      <label>Due date
+        <input id="tDue" type="date" required>
+      </label>
+      <label>How hard does it feel?
+        <select id="tDiff">
+          <option value="easy">Easy 🌱</option>
+          <option value="medium" selected>Medium 🌼</option>
+          <option value="hard">Hard 🌳</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="tBreak" checked> Break it into small steps for me</label>
+      <button class="btn" type="submit">Save task</button>
+    </form>
+  </section>
+
+  <!-- CALENDAR -->
+  <section id="calendar" class="view">
+    <h2>This week</h2>
+    <div id="weekList"></div>
+  </section>
+
+  <!-- FOCUS -->
+  <section id="focus" class="view">
+    <h2>Focus time</h2>
+    <div class="timerWrap">
+      <div class="ring" id="ring"><div class="ringIn"><span id="timeText">25:00</span><small id="modeText">Focus</small></div></div>
+    </div>
+    <div class="row center">
+      <button class="btn" id="startBtn">Start</button>
+      <button class="btn ghost" id="resetBtn">Reset</button>
+    </div>
+    <p class="muted center" id="timerMsg">One small stretch. Then a little break.</p>
+  </section>
+
+  <!-- REWARDS -->
+  <section id="rewards" class="view">
+    <h2>Your glow</h2>
+    <div class="card center">
+      <div class="mascot big" id="mascotBig">⭐</div>
+      <h3 id="levelText">Level 1</h3>
+      <div class="meter"><div class="meterFill" id="meterFill"></div></div>
+      <p class="muted" id="meterText"></p>
+      <p id="streakText"></p>
+    </div>
+    <h3>Unlockables</h3>
+    <div class="unlocks" id="unlocks"></div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section id="settings" class="view">
+    <h2>Settings</h2>
+    <div class="card">
+      <label class="check"><input type="checkbox" id="darkToggle"> Calm dark mode</label>
+      <label>Focus minutes <input type="number" id="focusMin" min="5" max="90"></label>
+      <label>Break minutes <input type="number" id="breakMin" min="1" max="30"></label>
+      <button class="btn ghost" id="clearBtn">Clear all my data</button>
+    </div>
+  </section>
+
+</main>
+
+<nav id="nav" hidden>
+  <button data-go="home"><span>🏠</span>Home</button>
+  <button data-go="calendar"><span>📅</span>Week</button>
+  <button data-go="focus"><span>⏳</span>Focus</button>
+  <button data-go="rewards"><span>✨</span>Glow</button>
+  <button data-go="settings"><span>⚙️</span>Settings</button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
