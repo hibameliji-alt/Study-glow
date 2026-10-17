@@ -120,6 +120,7 @@ function toggle(id, e) {
     S.glow += POINTS[t.diff] || 10;
     if (!S.days.includes(todayStr())) S.days.push(todayStr());
     sparkle(e.clientX, e.clientY);
+    try { window.Capacitor?.Plugins?.Haptics?.impact({ style: "MEDIUM" }); } catch {}
     $("#bubble").textContent = cheer();
   } else {
     S.glow = Math.max(0, S.glow - (POINTS[t.diff] || 10));
@@ -191,6 +192,7 @@ function renderSettings() {
   $("#darkToggle").checked = S.dark;
   $("#focusMin").value = S.focus;
   $("#breakMin").value = S.brk;
+  $("#remindToggle").checked = !!S.remind;
 }
 $("#darkToggle").onchange = e => { S.dark = e.target.checked; applyTheme(); save(); };
 $("#focusMin").onchange = e => { S.focus = Math.min(90, Math.max(5, +e.target.value || 25)); save(); resetTimer(); };
@@ -199,6 +201,22 @@ $("#clearBtn").onclick = () => {
   if (confirm("This will erase your tasks and glow. Are you sure?")) {
     localStorage.removeItem(KEY); S = fresh(); applyTheme(); show("welcome");
   }
+};
+
+$("#remindToggle").onchange = async e => {
+  const LN = window.Capacitor?.Plugins?.LocalNotifications;
+  if (!LN) { e.target.checked = false; alert("Reminders work in the iPhone app version."); return; }
+  try {
+    if (e.target.checked) {
+      const p = await LN.requestPermissions();
+      if (p.display !== "granted") { e.target.checked = false; return; }
+      await LN.schedule({ notifications: [{ id: 1, title: "Study Glow ✨", body: "You’ve got this! One tiny task today?",
+        schedule: { on: { hour: 16, minute: 0 }, allowWhileIdle: true } }] });
+    } else {
+      await LN.cancel({ notifications: [{ id: 1 }] });
+    }
+    S.remind = e.target.checked; save();
+  } catch { e.target.checked = false; }
 };
 
 /* ---------- Focus timer ---------- */
@@ -247,3 +265,5 @@ $("#resetBtn").onclick = resetTimer;
 applyTheme();
 resetTimer();
 show("welcome");
+
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(() => {});

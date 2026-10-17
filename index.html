@@ -7,6 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#c9b8ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Study Glow">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -117,6 +122,7 @@
       <label class="check"><input type="checkbox" id="darkToggle"> Calm dark mode</label>
       <label>Focus minutes <input type="number" id="focusMin" min="5" max="90"></label>
       <label>Break minutes <input type="number" id="breakMin" min="1" max="30"></label>
+      <label class="check"><input type="checkbox" id="remindToggle"> Daily friendly reminder (iPhone app)</label>
       <button class="btn ghost" id="clearBtn">Clear all my data</button>
     </div>
   </section>

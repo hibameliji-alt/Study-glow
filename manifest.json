@@ -1,0 +1,13 @@
+{
+  "name": "Study Glow",
+  "short_name": "Study Glow",
+  "description": "A cozy study planner that keeps school tasks small and calm.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fbf7ff",
+  "theme_color": "#c9b8ff",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
